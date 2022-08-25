@@ -26,6 +26,8 @@ import TambahPetugas from './components/Petugas/TambahPetugas.vue'
 import EditPetugas from './components/Petugas/EditPetugas.vue'
 
 import Pembayaran from './components/Pembayaran.vue'
+import PembayaranSiswa from './components/PembayaranSiswa.vue'
+import PembayaranPetugas from './components/PembayaranPetugas.vue'
 
 import Bayar from './components/Bayar.vue'
 
@@ -56,6 +58,8 @@ const router = createRouter({
         {path : '/petugas/editpetugas/:id', name:"EditPetugas", component : EditPetugas},
         
         {path : '/pembayaran', name:"Pembayaran", component : Pembayaran},
+        {path : '/pembayaransiswa', name:"PembayaranSiswa", component : PembayaranSiswa},
+        {path : '/pembayaranpetugas', name:"PembayaranPetugas", component : PembayaranPetugas},
         
         {path : '/bayar', name:"Bayar", component : Bayar},
         

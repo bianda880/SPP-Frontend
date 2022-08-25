@@ -15,8 +15,10 @@
             </select>
             <br>
             Tahun Bayar
-            <input type="number" name="tahun_bayar" class="form-control" v-model="tahun_bayar" placeholder="Masukkan tahun bayar" 
-            autocomplete="off">
+            <select name="tahun_bayar" class="form-select" v-model="tahun_bayar">
+                <option value="" selected hidden disabled>Pilih tahun spp</option>
+                <option v-for="spp in listspp" :key="spp.id_spp" v-bind:value="spp.tahun">{{spp.tahun}}</option>
+            </select>
             <br>
 
             <!-- Button -->
@@ -49,6 +51,7 @@
                     {key:"Juli", val:"Juli"}, {key:"Agustus", val:"Agustus"}, {key:"September", val:"September"},
                     {key:"Oktober", val:"Oktober"}, {key:"November", val:"November"}, {key:"Desember", val:"Desember"}
                 ],
+                listspp:[],
                 message: '',
                 style_msg: '',
                 error:false
@@ -67,26 +70,26 @@
                     tahun_bayar:this.tahun_bayar
                 }
                 // Admin
-                this.axios.post("http://localhost/latihan_migrasi/public/api/bayar", datapembayaran, option).then((result) => {
+                this.axios.post("http://localhost/latihan_migrasi/public/api/insert_pembayaran", datapembayaran, option).then((result) => {
                     console.log(result)
-                    if(result.request.status==200){
+                       
                     if (result.data.status==true){
                         this.error=false
                         this.message=result.data.message
                         this.style_msg="alert alert-success"
+
+                        setTimeout(()=>{
+                        this.$router.push('/pembayaran')
+                        }, 2000)
                     }else{
                         this.error=true
                         this.message=result.data.message
                         this.style_msg="alert alert-danger"
-                    }
                     
-                    setTimeout(()=>{
-                    this.$router.push('/pembayaran')
-                    }, 2000)
-                }
+                    }
                 })
                 // Petugas
-                this.axios.post("http://localhost/latihan_migrasi/public/api/bayarr", datapembayaran, option).then((result) => {
+                this.axios.post("http://localhost/latihan_migrasi/public/api/insert_pembayarans", datapembayaran, option).then((result) => {
                     // console.log(result)
                     if(result.request.status==200){
                     if (result.data.status==true){
@@ -104,7 +107,21 @@
                     }, 2000)
                 } 
                 })
-            }
+            },
+            getspp:function() {
+                var option = {
+                    headers:{
+                        'Authorization':'bearer ' + localStorage.getItem("token")
+                    }
+                }
+                this.axios.get("http://localhost/latihan_migrasi/public/api/spp", option).then((result) => {
+                    console.log(result)
+                    this.listspp = result.data
+                })
+            },
+        },
+        mounted() {
+            this.getspp()
         }
     }
 </script>

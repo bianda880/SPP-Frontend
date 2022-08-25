@@ -1,6 +1,6 @@
 <template>
   <body>
-    <nav v-if="authenticated">
+    <nav v-if="authenticated" @level = "setLevel" @username = "setUsername">
       <label class="logo" >SPP</label>
       <ul class="nav__links" > 
         <li><router-link class="active" to="/">Home</router-link></li>
@@ -12,10 +12,10 @@
         <li v-if="level=='admin'"><router-link to="/pembayaran">History</router-link></li>
         <li v-if="level=='admin'"><router-link to="/bayar">Transaksi</router-link></li>
 
-        <li v-if="level=='petugas'"><router-link to="/pembayaran">History</router-link></li>
+        <li v-if="level=='petugas'"><router-link to="/pembayaranpetugas">History</router-link></li>
         <li v-if="level=='petugas'"><router-link to="/bayar">Transaksi</router-link></li>
       
-        <li v-if="level=='siswa'"><router-link to="/pembayaran">History</router-link></li>
+        <li v-if="level=='siswa'"><router-link to="/pembayaransiswa">History</router-link></li>
 
         <router-link class="logout" to="/login" v-on:click="logout()"><i class='bx bx-power-off'></i></router-link>
       </ul>
@@ -37,6 +37,7 @@ export default {
       authenticated:JSON.parse(localStorage.getItem('status')),
       level:localStorage.getItem("level"),
       nama:localStorage.getItem("nama"),
+      nisn:localStorage.getItem('nisn'),
     }
   },
   mounted(){
@@ -54,12 +55,16 @@ export default {
     setnama(status){
       this.nama=status
     },
+    setNisn(status) {
+        this.nisn = status
+    },
     logout(){
       this.authenticated=false
       localStorage.removeItem('status')
       localStorage.removeItem('token')
       localStorage.removeItem('level')
       localStorage.removeItem('nama')
+      localStorage.removeItem('nisn')
     }
   }
 }

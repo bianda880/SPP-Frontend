@@ -32,10 +32,15 @@ export default {
                 localStorage.setItem('status', true);
                 localStorage.setItem('level', result.data.level);
                 localStorage.setItem('nama', result.data.nama);
+                localStorage.setItem('nisn', result.data.nisn)
+
+                this.$emit("authenticated",true)
                 this.$emit("level", result.data.level)
                 this.$emit("nama", result.data.nama)
-                this.$emit("authenticated",true)
+                this.$emit("nisn", result.data.nisn)
+
                 this.$store.dispatch('setnama', result.data.nama)
+                this.$store.dispatch('setnisn', result.data.nisn)
                 this.$router.replace({name: "Home"})
             }).catch(error=>{
                 console.log(error)

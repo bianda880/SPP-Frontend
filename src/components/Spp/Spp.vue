@@ -13,7 +13,7 @@
                 </tr>
             </thead>  
             <tbody>
-                <tr v-for="sp in spp.data" :key="sp.id_spp">
+                <tr v-for="sp in spp" :key="sp.id_spp">
                     <td>{{sp.id_spp}}</td>
                     <td>{{sp.angkatan}}</td>
                     <td>{{sp.tahun}}</td>

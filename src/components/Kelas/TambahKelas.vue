@@ -53,25 +53,20 @@ export default {
             }
             this.axios.post("http://localhost/latihan_migrasi/public/api/insert_kelas", datakelas, option).then((result)=>{
                 console.log(result)
-                if(result.request.status==200){
                     if (result.data.status==true){
                         this.error=false
                         this.message=result.data.message
                         this.style_msg="alert alert-success"
+
+                        setTimeout(()=>{
+                        this.$router.push('/kelas')
+                        }, 2000)
                     }else{
                         this.error=true
                         this.message=result.data.message
                         this.style_msg="alert alert-danger"
                     }
                     
-                    setTimeout(()=>{
-                    this.$router.push('/kelas')
-                    }, 2000)
-                }else{
-                    this.error=true
-                    this.style_msg="alert alert-danger"
-                    this.message=result.data.status                    
-                }
             })
         }
     }

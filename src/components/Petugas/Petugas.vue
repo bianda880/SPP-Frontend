@@ -14,7 +14,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="pet in petugas.data" :key="pet.id">
+                <tr v-for="pet in petugas" :key="pet.id">
                     <td>{{pet.id}}</td>
                     <td>{{pet.id_petugas}}</td>
                     <td>{{pet.name}}</td>

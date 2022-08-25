@@ -16,7 +16,7 @@
         ID Kelas
         <select name="id_kelas" v-model="id_kelas" class="form-control">
             <option></option>
-            <option v-for="kelas in listkelas.data" :key="kelas.id_kelas" v-bind:value="kelas.id_kelas">{{kelas.nama_kelas}}</option>
+            <option v-for="kelas in listkelas" :key="kelas.id_kelas" v-bind:value="kelas.id_kelas">{{kelas.nama_kelas}}</option>
         </select>
         <br>
         Alamat

@@ -16,7 +16,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="sis in siswa.data" :key="sis.nisn">
+                <tr v-for="sis in siswa" :key="sis.nisn">
                     <td>{{sis.nisn}}</td>
                     <td>{{sis.username}}</td>
                     <td>{{sis.nis}}</td>
